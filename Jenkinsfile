@@ -10,7 +10,7 @@ node('c07fcf718803') {
   stage('Test') {
     sh 'docker run --name classweb1 --env NGINX_PORT=80 --publish=80:80 -d classweb'
     IPAddr = sh 'docker inspect --format="{{.NetworkSettings.IPAddress}}" classweb1'
-    sh 'curl -s 10.120.1.38'
+    sh 'curl -s $IPAddr'
     sh 'docker stop classweb1'
     sh 'docker rm classweb1'
   }
